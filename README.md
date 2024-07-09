@@ -15,7 +15,9 @@ print(evi_estimator.k_0_star)
 ```
 ## Introduction
 
-This repository provides a Python implementation of an adaptive method for estimating the Extreme Value Index (EVI) using Probability Weighted Moments (PWM). The EVI is a crucial parameter in extreme value theory, playing a key role in understanding and predicting the behavior of extreme events such as natural disasters, financial market crashes, or rare insurance claims.  
+This repository provides a Python implementation of an adaptive method for estimating the Extreme Value Index (EVI) using Probability Weighted Moments (PWM). The paper is called ```"Computational Study of the Adaptive Estimation of the Extreme Value Index with Probability Weighted Moments" ``` and can be read here: https://shorturl.at/QEeit 
+
+The EVI is a crucial parameter in extreme value theory, playing a key role in understanding and predicting the behavior of extreme events such as natural disasters, financial market crashes, or rare insurance claims.  
 
 ## Background
 
