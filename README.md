@@ -49,44 +49,45 @@ The adaptive EVI estimation method is valuable for:
 
 
 
-### Step 1: Initial Data Collection
-- Start with a set of data points that represent extreme events you're interested in, such as very high insurance claims or extreme weather measurements.
+Certainly! Here's the revised version of the algorithm description using variables in backticks for better display on GitHub.
 
-### Step 2: Estimate Key Patterns
-- Look at your data and calculate some numbers that help you understand how these extreme events are distributed. These numbers give you a rough idea of the trends in your data.
+---
 
-### Step 3: Choose the Best Approach
-- Compare the numbers you calculated to see which method gives a more consistent picture of your data. Based on this comparison, choose the best method for further analysis.
+## Adaptive Extreme Value Index (EVI) Estimation Algorithm
 
-### Step 4: Compute Initial Estimates
-- Using the chosen method, make initial guesses for the key parameter (the EVI) that describes how extreme the events are. This is like taking a first stab at estimating the EVI.
+This algorithm is designed to estimate the Extreme Value Index (EVI), a crucial parameter in extreme value theory used to model the tail behavior of distributions. The algorithm focuses on heavy-tailed distributions (those with a positive EVI) and employs a double bootstrap approach to adaptively select the optimal number of order statistics for EVI estimation. It supports both the Hill and the Probability Weighted Moments (PWM) estimators.
 
-### Step 5: Divide Your Data into Smaller Chunks
-- Split your data into smaller, more manageable parts. This helps ensure that your analysis is not overly influenced by any one part of the data.
+### Key Steps
 
-### Step 6: Create New Samples
-- Generate multiple new sets of data by randomly picking points from your original data. This process, called bootstrapping, helps you understand how stable your estimates are.
+1. **Bias Correction Coefficients Generation:**
+    - **Rho Estimation (Fraga Alves et al., 2003):** Estimate the second-order parameter `rho` using the `rho`-estimators with tuning parameters `tau = 0` and `tau = 1`. Select the optimal `tau` based on minimizing the median squared error.
+    - **Beta Estimation (Gomes and Martins, 2002):** Estimate the second-order parameter `beta` using the selected `tau` and the corresponding `rho` estimate.
+    - **Calculate `rho` and `beta` at `k1`:** Compute `rho` and `beta` at `k1 = floor(n^0.999)`, where `n` is the sample size.
 
-### Step 7: Evaluate Performance
-- For each new set of data, recalculate your EVI estimates. Check how well these estimates match up with what you would expect. This involves computing a measure (MSE) that tells you how far off your estimates are from the actual values.
+2. **Subsample Size Selection:**
+    - Determine two subsample sizes, `n1` and `n2`, where `n1` is a fraction of the original sample size and `n2` is derived from `n1`.
 
-### Step 8: Find the Best Split Point
-- Determine the point where your estimates are the most accurate. This is done by finding the point where the MSE is minimized for your bootstrapped samples.
+3. **Bootstrap Sampling:**
+    - Generate multiple bootstrap samples of sizes `n1` and `n2` from the empirical distribution of the original data.
 
-### Step 9: Determine Optimal Threshold
-- Use the best split point you found in the previous step to calculate a threshold. This threshold helps you decide how to divide your data for the most accurate estimation.
+4. **Compute Bootstrap T-statistics:**
+    - For each bootstrap sample and a range of `k` values, calculate the T-statistic, which is the difference between the EVI estimates at `k/2` and `k`.
 
-### Step 10: Final Estimate
-- Combine all the information gathered from the previous steps to make a final, robust estimate of the EVI. This final step ensures that your estimate is as accurate and reliable as possible.
+5. **Minimize Mean Squared Error (MSE):**
+    - Find the optimal `k` values (`k0_star`) for both `n1` and `n2` that minimize the MSE of the T-statistics.
 
-### Summary of the Algorithm:
-1. **Collect Data:** Gather your extreme events data.
-2. **Estimate Patterns:** Calculate key numbers to understand data trends.
-3. **Choose Approach:** Select the best method based on these numbers.
-4. **Initial Estimates:** Make first guesses for the EVI.
-5. **Divide Data:** Split data into smaller chunks.
-6. **Create Samples:** Generate new sets of data for stability checks.
-7. **Evaluate:** Check the accuracy of your estimates.
-8. **Find Split Point:** Determine where your estimates are most accurate.
-9. **Set Threshold:** Calculate the best threshold for data division.
-10. **Final Estimate:** Combine everything to get the best EVI estimate.
+6. **Compute Threshold Estimate:**
+    - Combine `k0_star` values from both subsamples and the estimated `rho` to determine the final threshold estimate `k0_star`.
+
+7. **Bias-Corrected EVI:**
+    - Calculate the initial EVI estimate using either the Hill or PWM estimator at `k0_star`.
+    - Apply bias correction using the estimated `rho` and `beta` to obtain the final, bias-corrected EVI.
+
+### Key References
+
+- **Fraga Alves et al. (2003):** Introduces the `rho`-estimators for estimating the second-order parameter `rho`.
+- **Gomes and Martins (2002):** Provides the method for estimating the second-order parameter `beta`.
+- **Caeiro et al. (2014):** Details the semi-parametric probability-weighted moments estimation.
+- **Gomes and Oliveira (2001):** Discusses the bootstrap methodology in the context of extreme value statistics.
+
+---
