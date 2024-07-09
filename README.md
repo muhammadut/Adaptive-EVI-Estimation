@@ -21,11 +21,12 @@ This repository provides a Python implementation of an adaptive method for estim
 
 Traditional methods for estimating the EVI, like the Hill estimator or the standard PWM estimator, often rely on a pre-determined threshold for selecting the number of extreme values to include in the estimation.  This choice of threshold can significantly impact the accuracy and reliability of the EVI estimate.
 
-The adaptive EVI estimation method, as presented in the research paper "Computational Study of the Adaptive Estimation of the Extreme Value Index with Probability Weighted Moments," addresses this issue by introducing a data-driven approach for automatically selecting the optimal threshold.
+The adaptive EVI estimation method, as presented in the research paper 
+```"Computational Study of the Adaptive Estimation of the Extreme Value Index with Probability Weighted Moments" ``` addresses this issue by introducing a data-driven approach for automatically selecting the optimal threshold.
 
 ## Summary
 
-This implementation follows the methodology described in the research paper, employing a double bootstrap technique to assess the stability of EVI estimates across different thresholds. The algorithm then selects the threshold that yields the most stable and reliable estimate, thus mitigating the potential bias and inaccuracy associated with a fixed threshold.
+This algorithm is designed to estimate the Extreme Value Index (EVI), a crucial parameter in extreme value theory used to model the tail behavior of distributions. The algorithm focuses on heavy-tailed distributions (those with a positive EVI) and employs a double bootstrap approach to adaptively select the optimal number of order statistics for EVI estimation. It supports both the Hill and the Probability Weighted Moments (PWM) estimators.
 
 **Key Features:**
 
