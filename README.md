@@ -1,6 +1,18 @@
 
 # Adaptive EVI Estimation with Probability Weighted Moments (PWM)
+# EXAMPLE USEAGE 
 
+```python
+# Create an instance of AdaptiveEVI
+evi_estimator = AdaptiveEVI(data, subsample_size=0.8, bootstrap_samples=50, estimator='hill')
+
+# Generate the final EVI estimate
+evi_estimate = evi_estimator.generate_evi()
+
+print(f"Estimated Extreme Value Index: {evi_estimate}")
+print(evi_estimator.k_0_star)
+
+```
 ## Introduction
 
 This repository provides a Python implementation of an adaptive method for estimating the Extreme Value Index (EVI) using Probability Weighted Moments (PWM). The EVI is a crucial parameter in extreme value theory, playing a key role in understanding and predicting the behavior of extreme events such as natural disasters, financial market crashes, or rare insurance claims.  
