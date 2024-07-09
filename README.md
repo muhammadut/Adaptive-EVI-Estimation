@@ -49,13 +49,8 @@ The adaptive EVI estimation method is valuable for:
 
 
 
-Certainly! Here's the revised version of the algorithm description using variables in backticks for better display on GitHub.
-
 ---
 
-## Adaptive Extreme Value Index (EVI) Estimation Algorithm
-
-This algorithm is designed to estimate the Extreme Value Index (EVI), a crucial parameter in extreme value theory used to model the tail behavior of distributions. The algorithm focuses on heavy-tailed distributions (those with a positive EVI) and employs a double bootstrap approach to adaptively select the optimal number of order statistics for EVI estimation. It supports both the Hill and the Probability Weighted Moments (PWM) estimators.
 
 ### Key Steps
 
